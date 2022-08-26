@@ -1,0 +1,17 @@
+main {
+  @apply max-w-screen-md flex justify-center items-center mx-auto;
+}
+
+p {
+  @apply text-center;
+
+  &:first-child {
+    @apply text-2xl mb-4;
+  }
+  &:last-child {
+    @apply text-base;
+    a {
+      @apply text-green-900 font-semibold hover:underline;
+    }
+  }
+}
