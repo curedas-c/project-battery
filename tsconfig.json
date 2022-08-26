@@ -16,6 +16,7 @@
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "importHelpers": true,
+    "allowJs": true,
     "target": "es2020",
     "module": "es2020",
     "lib": ["es2020", "dom"],
@@ -26,6 +27,7 @@
       "@utils": ["src/app/@shared/utils/*"]
     }
   },
+  "exclude": ["node_modules"],
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,

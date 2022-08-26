@@ -18,9 +18,9 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-builders/custom-webpack:browser",
           "options": {
-            "outputPath": "dist/ngx-project-template",
+            "outputPath": "dist",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -28,7 +28,11 @@
             "inlineStyleLanguage": "scss",
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": ["src/styles.scss"],
-            "scripts": []
+            "scripts": [],
+            "customWebpackConfig": {
+              "path": "./angular.webpack.js",
+              "replaceDuplicatePlugins": true
+            }
           },
           "configurations": {
             "production": {
@@ -64,13 +68,16 @@
           "defaultConfiguration": "production"
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
+          "builder": "@angular-builders/custom-webpack:dev-server",
+          "options": {
+            "browserTarget": "ngx-project-template:build"
+          },
           "configurations": {
-            "production": {
-              "browserTarget": "ngx-project-template:build:production"
-            },
             "development": {
               "browserTarget": "ngx-project-template:build:development"
+            },
+            "production": {
+              "browserTarget": "ngx-project-template:build:production"
             }
           },
           "defaultConfiguration": "development"
