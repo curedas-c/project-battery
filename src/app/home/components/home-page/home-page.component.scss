@@ -1,0 +1,9 @@
+.battery {
+  &__enabled {
+    @apply text-green-500 text-lg text-center cursor-pointer;
+  }
+
+  &__disabled {
+    @apply text-red-500 text-lg text-center italic cursor-help;
+  }
+}

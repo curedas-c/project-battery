@@ -8,6 +8,7 @@ const args = process.argv.slice(1),
   serve = args.some(val => val === '--serve');
 function createWindow() {
   const size = electron_1.screen.getPrimaryDisplay().workAreaSize;
+  console.log(__dirname);
   // Create the browser window.
   win = new electron_1.BrowserWindow({
     x: 0,
@@ -17,9 +18,20 @@ function createWindow() {
     webPreferences: {
       nodeIntegration: true,
       allowRunningInsecureContent: serve,
-      contextIsolation: false // false if you want to run e2e test with Spectron
+      contextIsolation: true,
+      preload: path.join(__dirname, 'preload.js')
     }
   });
+  // Event Actions
+  electron_1.ipcMain.on('switchMonitoring', (event, status) => {
+    // const webContents = event.sender
+    // const win = BrowserWindow.fromWebContents(webContents)
+    // win.setTitle(title)
+    console.log('new status', status);
+  });
+  electron_1.powerMonitor.on('on-ac', () => {});
+  electron_1.powerMonitor.on('on-battery', () => {});
+  // Serve
   if (serve) {
     const debug = require('electron-debug');
     debug();

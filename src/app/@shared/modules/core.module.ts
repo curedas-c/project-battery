@@ -25,21 +25,21 @@ const MODULES = [
   HttpClientModule,
   RouterModule,
   LoadingBarModule,
-  LoadingBarHttpClientModule,
-  NgxsModule.forRoot([GlobalState], {
-    developmentMode: !environment.production
-  }),
-  StoreStorageModule,
-  NgxsLoggerPluginModule.forRoot(),
-  NgxsReduxDevtoolsPluginModule.forRoot(),
-  NgxsFormPluginModule.forRoot()
+  LoadingBarHttpClientModule
+  // NgxsModule.forRoot([GlobalState], {
+  //   developmentMode: !environment.production
+  // }),
+  // StoreStorageModule,
+  // NgxsLoggerPluginModule.forRoot(),
+  // NgxsReduxDevtoolsPluginModule.forRoot(),
+  // NgxsFormPluginModule.forRoot()
 ];
 
 const PROVIDERS = [GlobalFacade];
 @NgModule({
   declarations: [...DECLARATIONS],
   imports: [CommonModule, ...MODULES],
-  providers: PROVIDERS,
+  // providers: PROVIDERS,
   exports: [...DECLARATIONS, ...MODULES]
 })
 export class CoreModule {}

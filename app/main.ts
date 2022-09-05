@@ -1,4 +1,4 @@
-import { app, BrowserWindow, screen } from 'electron';
+import { app, BrowserWindow, ipcMain, screen, powerMonitor } from 'electron';
 import * as path from 'path';
 import * as fs from 'fs';
 
@@ -9,6 +9,7 @@ const args = process.argv.slice(1),
 function createWindow(): BrowserWindow {
   const size = screen.getPrimaryDisplay().workAreaSize;
 
+  console.log(__dirname);
   // Create the browser window.
   win = new BrowserWindow({
     x: 0,
@@ -18,10 +19,24 @@ function createWindow(): BrowserWindow {
     webPreferences: {
       nodeIntegration: true,
       allowRunningInsecureContent: serve,
-      contextIsolation: false // false if you want to run e2e test with Spectron
+      contextIsolation: true,
+      preload: path.join(__dirname, 'preload.js')
     }
   });
 
+  // Event Actions
+  ipcMain.on('switchMonitoring', (event, status) => {
+    // const webContents = event.sender
+    // const win = BrowserWindow.fromWebContents(webContents)
+    // win.setTitle(title)
+    console.log('new status', status);
+  });
+
+  powerMonitor.on('on-ac', () => {});
+
+  powerMonitor.on('on-battery', () => {});
+
+  // Serve
   if (serve) {
     const debug = require('electron-debug');
     debug();

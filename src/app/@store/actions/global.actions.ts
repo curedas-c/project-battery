@@ -5,6 +5,11 @@ export class SetRouteData {
   constructor(public data: GlobalRouteData) {}
 }
 
+export class SwitchMonitoringStatus {
+  static readonly type = '[GLobal] Switch Monitoring Status';
+  constructor() {}
+}
+
 export class NotifyRouteChange {
   static readonly type = '[GLobal] Notify Route Change';
   constructor(public data: GlobalRouteData) {}

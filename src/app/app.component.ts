@@ -15,7 +15,7 @@ export class AppComponent implements OnDestroy {
     private activatedRoute: ActivatedRoute,
     private globalFacade: GlobalFacade
   ) {
-    this.listenToRouteParamsChanges();
+    // this.listenToRouteParamsChanges();
   }
 
   ngOnDestroy(): void {
